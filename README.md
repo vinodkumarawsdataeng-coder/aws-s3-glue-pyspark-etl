@@ -66,7 +66,7 @@ The pipeline follows a simple raw-to-curated data flow:
 
                   
 🔄 Workflow
-1. Data Ingestion
+##1. Data Ingestion
 
 The customer CSV file is uploaded to the raw S3 location.
 
@@ -76,7 +76,8 @@ s3://s3-to-s3-etl-job/raw/customers/
 
 The raw layer keeps the original source data before transformation.
 
-2. Read Data Using AWS Glue
+
+##2. Read Data Using AWS Glue
 
 The AWS Glue PySpark job reads the CSV file from the S3 raw location.
 
@@ -90,7 +91,9 @@ name
 city
 age
 salary
-3. Data Cleaning
+
+
+##3. Data Cleaning
 
 The Glue job performs basic data cleaning.
 
@@ -100,7 +103,9 @@ Remove records with missing required fields.
 Remove duplicate customer records.
 Remove extra spaces from names.
 Standardize city names.
-4. Data Validation
+
+
+##4. Data Validation
 
 Basic data quality checks are performed during processing.
 
@@ -113,7 +118,8 @@ Duplicate customer records
 
 The validation results are written to the Glue job logs.
 
-5. Data Transformation
+
+##5. Data Transformation
 
 Additional columns are created during the transformation process.
 
@@ -134,7 +140,8 @@ SENIOR
 
 The ETL job also adds a processing_date column.
 
-6. Store Curated Data
+
+##6. Store Curated Data
 
 After transformation, the processed data is written back to Amazon S3.
 
@@ -156,13 +163,13 @@ curated/customers/
 Partitioning makes it easier to filter and process data based on city.
 
 
-🧪 Data Validation Queries
+##🧪 Data Validation Queries
 
 SQL queries are included in:
 
 sql/validation_queries.sql
 
-The queries can be used to validate:
+#The queries can be used to validate:
 
 Total customer records
 Duplicate customer IDs
@@ -175,11 +182,11 @@ Salary category distribution
 Age category distribution
 📜 Glue ETL Script
 
-The main ETL script is available here:
+#The main ETL script is available here:
 
 glue/etl_job.py
 
-The script handles:
+#The script handles:
 
 Reading data from S3.
 Applying the schema.
@@ -192,7 +199,7 @@ Partitioning the output by city.
 Logging ETL results.
 📈 Output
 
-The final dataset contains:
+#The final dataset contains:
 
 customer_id
 name
