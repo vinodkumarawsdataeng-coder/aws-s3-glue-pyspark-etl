@@ -63,7 +63,8 @@ The pipeline follows a simple raw-to-curated data flow:
                   Parquet Files
                          |
                   Partitioned by City
---
+
+                  
 🔄 Workflow
 1. Data Ingestion
 
@@ -71,7 +72,7 @@ The customer CSV file is uploaded to the raw S3 location.
 
 Example:
 
-s3://<bucket-name>/raw/customers/
+s3://s3-to-s3-etl-job/raw/customers/
 
 The raw layer keeps the original source data before transformation.
 
@@ -141,7 +142,7 @@ The output is stored in Parquet format.
 
 Example:
 
-s3://<bucket-name>/curated/customers/
+s3://s3-to-s3-etl-job/curated/customers/
 
 The data is partitioned by city:
 
@@ -154,25 +155,7 @@ curated/customers/
 
 Partitioning makes it easier to filter and process data based on city.
 
-📁 Project Structure
-aws-s3-glue-pyspark-etl/
-│
-├── data/
-│   └── customers.csv
-│
-├── glue/
-│   └── etl_job.py
-│
-├── sql/
-│   └── validation_queries.sql
-│
-├── docs/
-│   └── project-overview.md
-│
-├── architecture/
-│   └── architecture.png
-│
-└── README.md
+
 🧪 Data Validation Queries
 
 SQL queries are included in:
