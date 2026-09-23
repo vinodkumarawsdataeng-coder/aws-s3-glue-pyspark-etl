@@ -246,6 +246,7 @@ The command does not copy or modify the Parquet files.
 Partitions can be checked using:
 
 SHOW PARTITIONS customers;
+
 ## 🔎 9. Amazon Athena
 
 Amazon Athena is used to query the curated Parquet data using SQL.
@@ -272,9 +273,11 @@ SELECT *
 FROM customers
 LIMIT 10;
 
+
 # Count customers
 SELECT COUNT(*) AS total_customers
 FROM customers;
+
 
 # Check customers by city
 SELECT
@@ -284,10 +287,12 @@ FROM customers
 GROUP BY city
 ORDER BY customer_count DESC;
 
+
 # Query a specific partition
 SELECT *
 FROM customers
 WHERE city = 'Bangalore';
+
 
 # Average salary by city
 SELECT
@@ -297,6 +302,7 @@ FROM customers
 GROUP BY city
 ORDER BY avg_salary DESC;
 
+
 # Salary category distribution
 SELECT
     salary_category,
@@ -305,6 +311,7 @@ FROM customers
 GROUP BY salary_category
 ORDER BY customer_count DESC;
 
+
 # Age category distribution
 SELECT
     age_category,
@@ -312,6 +319,8 @@ SELECT
 FROM customers
 GROUP BY age_category
 ORDER BY customer_count DESC;
+
+
 
 ## 🧪 Data Validation Queries
 
@@ -397,62 +406,3 @@ AWS IAM is used to provide the required permissions to the Glue job.
 The Glue job uses an IAM role for access to AWS resources.
 
 S3 input and output paths are passed through Glue job parameters rather than hardcoded in the ETL script.
-
-## 📁 Project Structure
-
-aws-s3-glue-pyspark-etl/
-│
-├── architecture/
-│   └── architecture.png
-│
-├── data/
-│   └── customers.csv
-│
-├── glue/
-│   └── etl_job.py
-│
-├── sql/
-│   └── validation_queries.sql
-│
-└── README.md
-
-## 🔄 End-to-End Data Flow
-
-Customer CSV
-     |
-     v
-Amazon S3
-Raw Layer
-     |
-     v
-AWS Glue + PySpark
-     |
-     +--> Data Cleaning
-     |
-     +--> Duplicate Removal
-     |
-     +--> Data Validation
-     |
-     +--> Transformations
-     |
-     v
-Amazon S3
-Curated Layer
-     |
-     v
-Partitioned Parquet
-     |
-     |  city=Bangalore
-     |  city=Chennai
-     |  city=Delhi
-     |  ...
-     |
-     v
-AWS Glue Data Catalog
-     |
-     v
-Amazon Athena
-     |
-     v
-SQL Analysis
-
